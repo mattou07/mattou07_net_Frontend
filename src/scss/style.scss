@@ -1,0 +1,15 @@
+@import "components/hint-accordion";
+//Footer fix
+.Site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  .Site-content {
+    flex: 1;
+  }
+
+  main {
+      padding: 1em;
+  }

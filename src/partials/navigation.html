@@ -1,0 +1,41 @@
+<nav class="navbar is-fixed-top is-info" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="index.html">
+            <i class="fas fa-terminal"></i>
+          </a>
+          <a role="button" v-on:click="toggleNavBurger" v-bind:class="[navBurger, {'is-active': isActive}]" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+    </div>
+    <div v-bind:class="[navMenu, {'is-active': isActive}]">
+        <a class="navbar-item">
+            Home
+          </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Topics
+            </a>
+        
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="topic-example.html">
+                C#
+              </a>
+              <a class="navbar-item">
+                Javascript
+              </a>
+              <a class="navbar-item">
+                DevOps
+              </a>
+              <hr class="navbar-divider">
+              <div class="navbar-item">
+                Version 0.7.1
+              </div>
+            </div>
+          </div>
+          <a class="navbar-item">
+            About me
+          </a>
+    </div>
+  </nav>

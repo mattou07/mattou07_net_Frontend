@@ -1,0 +1,43 @@
+{% extends "layouts/master.html" %} {% block content %}
+<div class="columns" style="margin-top: 1em;">
+  <div class="column is-8 is-offset-2">
+    {% include "/components/tags-example.html" %} {% include
+    "/components/content.html" %}
+  </div>
+  <div class="column"></div>
+</div>
+
+<div class="columns">
+  <div class="column is-6 is-offset-2">
+    <div class="content">
+      <h5>More screenshots</h5>
+      <p>
+        Cras in nibh lacinia, venenatis nisi et, auctor urna. Donec pulvinar
+        lacus sed diam dignissim, ut eleifend eros accumsan. Phasellus non
+        tortor eros. Ut sed rutrum lacus. Etiam purus nunc, scelerisque quis
+        enim vitae, malesuada ultrices turpis. Nunc vitae maximus purus, nec
+        consectetur dui. Suspendisse euismod, elit vel rutrum commodo, ipsum
+        tortor maximus dui, sed varius sapien odio vitae est. Etiam at cursus
+        metus.
+      </p>
+    </div>
+  </div>
+
+  <div class="column is-2">
+    <figure>
+      <img src="https://bulma.io/images/placeholders/256x256.png" />
+      <figcaption>Figure 2: Screenshot</figcaption>
+    </figure>
+  </div>
+</div>
+<div class="columns">
+  <div class="">
+    {% include "/components/hint-accordion.html" %}
+    {% include "/components/hint-accordion.html" %}
+    <div class="column is-8 is-offset-2">
+      {% include "/components/content.html" %}
+    </div>
+
+    {% endblock %}
+  </div>
+</div>
