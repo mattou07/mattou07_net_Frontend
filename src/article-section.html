@@ -8,6 +8,7 @@
           v-bind:key="post.id"
           v-bind:title="post.title"
           v-bind:url="post.url"
+          v-bind:colours="colours"
         >
         </articletile>
       </div>
@@ -17,6 +18,7 @@
           v-bind:key="post.id"
           v-bind:title="post.title"
           v-bind:url="post.url"
+          v-bind:colours="colours"
         >
         </articletile>
       </div>
@@ -67,16 +69,21 @@
   });
 
   Vue.component("articletile", {
-    props: ["title", "url"],
-    template: `<article class="tile is-child notification is-primary"><p class="title">{{ title }}</p><a v-bind:href="url">Visit Me</a></article>`
+    props: ["title", "url", "colours"],
+    computed: {
+        assignColour: function() {
+            return this.colours[Math.floor(Math.random() * colours.length)];
+        }
+    },
+    template: `<article class="tile is-child" v-bind:class="assignColour"><p class="title">{{ title }}</p><a v-bind:href="url">Visit Me</a></article>`
   });
 
-  //v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title" v-bind:url="post.url"
   new Vue({
     el: "#article-section-app",
     data: {
       leftposts: [],
       rightposts: [],
+      colours: ["notification is-primary", "notification is-link", "notification is-info", "notification is-success", "notification is-warning","notification is-danger"],
       posts: contentArr
     },
     created: function() {
