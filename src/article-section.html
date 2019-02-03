@@ -1,61 +1,102 @@
-{% extends "layouts/master.html" %} 
-
-{% block content %}
-{% verbatim %}
+{% extends "layouts/master.html" %} {% block content %} {% verbatim %}
 <div class="columns">
-    <div class="column is-12">
-        <div class="tile is-ancestor" id="article-section-app">
-            <div class="tile is-6 is-vertical is-parent" id="tile-container-left">
-                <articletile v-for="post in posts"
-                v-bind:key="post.id"
-                v-bind:title="post.title"
-                v-bind:url="post.url">
-            </articletile>
-            </div>
-            <div class="tile is-6 is-vertical is-parent" id="tile-container-right">
-            </div>
-        </div>
+  <div class="column is-12">
+    <div class="tile is-ancestor" id="article-section-app">
+      <div class="tile is-6 is-vertical is-parent" id="tile-container-left">
+        <articletile
+          v-for="post in leftposts"
+          v-bind:key="post.id"
+          v-bind:title="post.title"
+          v-bind:url="post.url"
+        >
+        </articletile>
+      </div>
+      <div class="tile is-6 is-vertical is-parent" id="tile-container-right">
+        <articletile
+          v-for="post in rightposts"
+          v-bind:key="post.id"
+          v-bind:title="post.title"
+          v-bind:url="post.url"
+        >
+        </articletile>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
-var contentArr = [];
-    var left = true;
-    var colours = ["notification is-primary", "notification is-link", "notification is-info", "notification is-success", "notification is-warning","notification is-danger"];
-        contentArr.push({id: 1,title: "Setting up an Ipsec tunnel to Azure with Open VPN on Pfsense",url: "/posts/setting-up-an-ipsec-tunnel-to-azure-with-open-vpn-on-pfsense/"});
-        contentArr.push({id: 2,title: "Enable SSL for your Visual Studio Web Project",url: "/posts/enable-ssl-for-your-visual-studio-web-project/"});
-        contentArr.push({id: 3,title: "How to download your Azure Web job",url: "/posts/how-to-download-your-azure-web-job/"});
-
-// Vue.component('article-Section', {
-//     template: ''
-// })
-
-Vue.component("articletile", {
-    props: ["title","url"],
-    template: `<div class="tile is-child notification is-primary"><h3>{{ title }}</h3><a v-bind:href="url">Visit Me</a></div>`
+  var contentArr = [];
+  var left = true;
+  var colours = [
+    "notification is-primary",
+    "notification is-link",
+    "notification is-info",
+    "notification is-success",
+    "notification is-warning",
+    "notification is-danger"
+  ];
+  contentArr.push({
+    id: 1,
+    title: "Setting up an Ipsec tunnel to Azure with Open VPN on Pfsense",
+    url: "/posts/setting-up-an-ipsec-tunnel-to-azure-with-open-vpn-on-pfsense/"
+  });
+  contentArr.push({
+    id: 2,
+    title: "Enable SSL for your Visual Studio Web Project",
+    url: "/posts/enable-ssl-for-your-visual-studio-web-project/"
+  });
+  contentArr.push({
+    id: 3,
+    title: "How to download your Azure Web job",
+    url: "/posts/how-to-download-your-azure-web-job/"
+  });
+  contentArr.push({
+    id: 4,
+    title: "How to download your Azure Web job",
+    url: "/posts/how-to-download-your-azure-web-job/"
+  });
+  contentArr.push({
+    id: 5,
+    title: "How to download your Azure Web job",
+    url: "/posts/how-to-download-your-azure-web-job/"
+  });
+  contentArr.push({
+    id: 6,
+    title: "How to download your Azure Web job",
+    url: "/posts/how-to-download-your-azure-web-job/"
   });
 
-//v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title" v-bind:url="post.url"
-new Vue({ 
-    el: '#article-section-app',
+  Vue.component("articletile", {
+    props: ["title", "url"],
+    template: `<article class="tile is-child notification is-primary"><p class="title">{{ title }}</p><a v-bind:href="url">Visit Me</a></article>`
+  });
+
+  //v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title" v-bind:url="post.url"
+  new Vue({
+    el: "#article-section-app",
     data: {
-        leftposts: [
-        ],
-        rightposts: [
-
-        ],
-        posts: contentArr
+      leftposts: [],
+      rightposts: [],
+      posts: contentArr
     },
-    method: {
-        // randomColour: function() {
-        //     var colours = ["notification is-primary", "notification is-link", "notification is-info", "notification is-success", "notification is-warning","notification is-danger"]
-        //     return "tile is-child" + colours[Math.floor(Math.random() * colours.length)]
-        // }
+    created: function() {
+      this.assignContent();
     },
-    beforeMount: function() {
-
+    methods: {
+      assignContent: function() {
+        var left = true;
+        for (var i = 0; i < contentArr.length; i++) {
+          console.log(contentArr[i]);
+          if (left) {
+            left = false;
+            this.leftposts.push(contentArr[i]);
+          } else {
+            left = true;
+            this.rightposts.push(contentArr[i]);
+          }
+        }
+      }
     }
-})
+  });
 </script>
-{% endverbatim %}
-{% endblock %}
+{% endverbatim %} {% endblock %}
